@@ -83,6 +83,6 @@ Fuzzing these generators is a bit tricky, since building the full Okular applica
 
 ### Links
 
-- Intro Blog post: [azharmomin.me/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries](https://azharmomin.me/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries)
+- Intro Blog post: [amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries](https://amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries)
 
 That's it for now. If you're working on/know a KDE library that touches untrusted input and could benefit from fuzzing, please let me know! You can reach me on [Matrix](https://matrix.to/#/@azharmomin:kde.org) or [Email](mailto:azhar.momin@kdemail.net).

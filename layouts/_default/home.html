@@ -1,6 +1,5 @@
 {{- define "main" -}}
   {{- .Content -}}
-  {{- partial "home/greetings.html" -}}
 
   {{- $indexablePages := where site.RegularPages "Params.indexable" "ne" false -}}
 
@@ -13,10 +12,17 @@
     {{- if (and $featured site.Params.rtwt.home.showFeatured) -}}
         {{- partial "home/micro-list.html" (dict "items" $featured "title" (i18n "featured_posts")) -}}
     {{- end -}}
-    
+
     {{- if and site.RegularPages site.Params.rtwt.home.showRecent -}}
-      {{- $recent := cond site.Params.rtwt.home.hideRecentWhenFeatured (where $indexablePages "Params.featured" "!=" true) site.RegularPages -}}
-        {{- partial "home/micro-list.html" (dict "items" $recent "title" (i18n "recent_posts")) -}}
+        {{- $recentMonths := site.Params.rtwt.home.recentMonths | default 2 -}}
+        {{- $cutoffDate := now.AddDate 0 (mul $recentMonths -1) 0 -}}
+
+        {{- $sourcePages := cond site.Params.rtwt.home.hideRecentWhenFeatured (where $indexablePages "Params.featured" "!=" true) site.RegularPages -}}
+        {{- $recentPages := where $sourcePages "Params.date" "ge" $cutoffDate -}}
+
+        {{- if gt (len $recentPages) 0 -}}
+            {{- partial "home/micro-list.html" (dict "items" $recentPages "title" (i18n "recent_posts")) -}}
+        {{- end -}}
     {{- end -}}
   </div>
 {{- end -}}

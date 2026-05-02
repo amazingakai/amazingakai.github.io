@@ -1,6 +1,6 @@
 {{- partial "search_bar.html" -}}
 
-{{- range site.Data.rtwt.content.side.home -}}
+{{- range hugo.Data.rtwt.content.side.home -}}
   <div class="side-content">
     <h3>{{- .title -}}</h3>
     {{- if .imagePath -}}

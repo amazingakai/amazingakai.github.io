@@ -9,10 +9,6 @@ enableRobotsTXT = true
 [params]
   summaryLength = 1
 
-[params.links]
-  hugo = 'https://gohugo.io/'
-  theme = 'https://github.com/math-queiroz/rusty-typewriter'
-
 [params.author]
   name = 'Azhar Momin'
 
@@ -22,18 +18,15 @@ enableRobotsTXT = true
   searchPath = 'search'
 
 [params.rtwt.home]
-  showBio = true
-  showAuthorImg = true
   sidePaneTags = true
-  showFeatured = true
+  showFeatured = false
+  hideRecentWhenFeatured = false
   showRecent = true
-  hideRecentWhenFeatured = true
   countRecent = 5
 
 [params.rtwt.side.home]
   sidePaneSticky = false
-  taxonomies = ['tags']
-  countTaxonomy = 6
+  taxonomies = []
 
 [params.rtwt.side.list]
   sidePaneSticky = false
@@ -61,14 +54,9 @@ enableRobotsTXT = true
   weight = 1
 
 [[menus.main]]
-  name = 'About'
-  pageRef = '/about.md'
-  weight = 2
-
-[[menus.main]]
   name = 'Contact'
   url = 'mailto:azharmomin@proton.me'
-  weight = 3
+  weight = 2
 
 [outputFormats]
   [outputFormats.SearchIndex]

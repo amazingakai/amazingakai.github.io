@@ -37,8 +37,8 @@ With the initial setup of thumbnailers and KFileMetaData, it is easy to integrat
 
 ### Links
 
-- Intro Blog post: [azharmomin.me/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries](https://azharmomin.me/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries)
-- Midterm Blog post: [azharmomin.me/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog](https://azharmomin.me/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog)
+- Intro Blog post: [amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries](https://amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries)
+- Midterm Blog post: [amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog](https://amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog)
 
 ---
 
