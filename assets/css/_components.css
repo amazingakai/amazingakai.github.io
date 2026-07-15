@@ -189,3 +189,37 @@
 .search-result {
   border-top: 1px var(--dim-color) solid;
 }
+
+.find-me-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  padding-left: 0;
+  list-style: none;
+  margin-top: .5rem;
+}
+
+.find-me-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .35rem .75rem;
+  border: 1px var(--dim-color) solid;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: .9rem;
+  transition: border-color 80ms, color 80ms;
+}
+
+.find-me-link:hover {
+  border-color: var(--primary-color);
+}
+
+.find-me-link > svg {
+  height: 18px;
+  width: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+  margin: 0;
+  color: inherit;
+}
