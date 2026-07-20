@@ -1,8 +1,8 @@
 /* main and native elements rules */
 
 html[color-scheme^='dark'] .dark-icon,
-html[color-scheme^='light'] .light-icon { 
-  display: none; 
+html[color-scheme^='light'] .light-icon {
+  display: none;
 }
 
 html {
@@ -120,6 +120,19 @@ main#main-content img {
   margin: 1rem 0;
 }
 
+.theme-image__light,
+.theme-image__dark {
+  display: none;
+}
+
+html[color-scheme="light"] .theme-image__light {
+  display: block;
+}
+
+html[color-scheme="dark"] .theme-image__dark {
+  display: block;
+}
+
 footer#main-footer {
   margin: 5rem auto 0;
 }
@@ -152,9 +165,9 @@ a > svg {
 }
 
 blockquote {
-  padding-left: 25px; 
+  padding-left: 25px;
   margin: auto 5px;
-  border-left: 6px var(--dim-color) solid; 
+  border-left: 6px var(--dim-color) solid;
 }
 
 blockquote > p {
@@ -162,12 +175,12 @@ blockquote > p {
 }
 
 table {
-  border: 1px var(--dim-color) solid; 
+  border: 1px var(--dim-color) solid;
   border-collapse: collapse;
 }
 
 th, td {
-  border: 1px var(--dim-color) solid; 
+  border: 1px var(--dim-color) solid;
   padding: .2rem .5rem;
 }
 

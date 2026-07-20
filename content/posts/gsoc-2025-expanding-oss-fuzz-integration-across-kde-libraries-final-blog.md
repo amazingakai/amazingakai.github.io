@@ -2,7 +2,6 @@
 title = 'GSoC 2025: Expanding OSS-Fuzz Integration Across KDE Libraries (Final Update)'
 date = '2025-08-30T20:00:00+05:30'
 tags = ['GSoC', 'KDE', 'OSS-Fuzz']
-featured = true
 +++
 
 Hello everyone, this is going to be the final blog post of my GSoC 2025 project. In this post, I will summarize the progress made during the project and discuss the future plans for expanding OSS-Fuzz integration across KDE libraries.
@@ -37,8 +36,8 @@ With the initial setup of thumbnailers and KFileMetaData, it is easy to integrat
 
 ### Links
 
-- Intro Blog post: [amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries](https://amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries)
-- Midterm Blog post: [amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog](https://amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog)
+- Intro Blog post: [amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries](/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries)
+- Midterm Blog post: [amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog](/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog)
 
 ---
 

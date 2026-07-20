@@ -2,7 +2,6 @@
 title = 'GSoC 2025: Expanding OSS-Fuzz Integration Across KDE Libraries (Midterm Update)'
 date = '2025-07-23T20:00:00+05:30'
 tags = ['GSoC', 'KDE', 'OSS-Fuzz']
-featured = true
 +++
 
 Hello everyone! Midterm evaluations are here, and I wanted to share an update on my GSoC project. Here's what I've accomplished so far:
@@ -83,6 +82,6 @@ Fuzzing these generators is a bit tricky, since building the full Okular applica
 
 ### Links
 
-- Intro Blog post: [amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries](https://amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries)
+- Intro Blog post: [amazingakai.github.io/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries](/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries)
 
 That's it for now. If you're working on/know a KDE library that touches untrusted input and could benefit from fuzzing, please let me know! You can reach me on [Matrix](https://matrix.to/#/@azharmomin:kde.org) or [Email](mailto:azhar.momin@kdemail.net).

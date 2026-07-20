@@ -6,7 +6,7 @@ import * as params from '@params';
     document: {
       id: 'id',
       index: ['title', 'tags', 'content', 'date'],
-      store: ['title', 'summary', 'date', 'permalink'],
+      store: ['title', 'summary', 'date', 'permalink', 'banner'],
     },
     tokenize: 'forward',
   });
@@ -28,6 +28,16 @@ import * as params from '@params';
       a.href = item.permalink;
       time.innerText = item.date;
       content.innerHTML = item.summary;
+      if (item.banner) {
+        const a = document.createElement('a');
+        a.href = item.permalink;
+        const img = document.createElement('img');
+        img.className = 'flat-list-item-banner';
+        img.src = item.banner;
+        img.alt = '';
+        a.appendChild(img);
+        result.querySelector('header').appendChild(a);
+      }
       fragment.appendChild(result);
     }
     results.appendChild(fragment);
