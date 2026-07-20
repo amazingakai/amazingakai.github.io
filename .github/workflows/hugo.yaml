@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - main
+      - master
   workflow_dispatch:
 permissions:
   contents: write
