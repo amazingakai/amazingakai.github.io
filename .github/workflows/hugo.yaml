@@ -3,14 +3,11 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches:
-      - master
   workflow_dispatch:
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  pages: write
+  id-token: write
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -20,8 +17,6 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      base_url: ${{ steps.pages.outputs.base_url }}
     env:
       DART_SASS_VERSION: 1.99.0
       GO_VERSION: 1.26.1
@@ -82,52 +77,13 @@ jobs:
           key: hugo-${{ github.run_id }}
           restore-keys:
             hugo-
-      - name: Build main site
+      - name: Build the site
         run: |
           hugo build \
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/" \
             --cacheDir "${{ runner.temp }}/hugo_cache"
-      - name: Get open PRs
-        id: get-prs
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const prNumber = context.eventName === 'pull_request' && context.payload.pull_request
-              ? context.payload.pull_request.number
-              : null;
-            const { data: pulls } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-            });
-            return pulls
-              .filter(p => p.head.repo.full_name === `${context.repo.owner}/${context.repo.repo}`)
-              .filter(p => p.number !== prNumber)
-              .map(p => p.number)
-              .join(',');
-      - name: Build PR previews
-        if: steps.get-prs.outputs.result != ''
-        run: |
-          IFS=',' read -ra PRS <<< "${{ steps.get-prs.outputs.result }}"
-          for PR_NUMBER in "${PRS[@]}"; do
-            echo "::group::Building preview for PR #${PR_NUMBER}"
-            git fetch origin "pull/${PR_NUMBER}/head:pr-${PR_NUMBER}"
-            git stash --include-untracked
-            git checkout "pr-${PR_NUMBER}"
-            hugo build \
-              --gc \
-              --minify \
-              --baseURL "${{ steps.pages.outputs.base_url }}/pulls/${PR_NUMBER}/" \
-              --destination "${{ runner.temp }}/preview-${PR_NUMBER}" \
-              --cacheDir "${{ runner.temp }}/hugo_cache"
-            mkdir -p "public/pulls/${PR_NUMBER}"
-            cp -r "${{ runner.temp }}/preview-${PR_NUMBER }}"/* "public/pulls/${PR_NUMBER}/"
-            git checkout -
-            git stash pop || true
-            echo "::endgroup::"
-          done
       - name: Cache save
         id: cache-save
         uses: actions/cache/save@v5
@@ -148,102 +104,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
-  comment:
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    needs: [build, deploy]
-    steps:
-      - name: Find existing comment
-        id: find-comment
-        uses: actions/github-script@v7
-        with:
-          result-encoding: json
-          script: |
-            const marker = '<!-- pr-preview -->';
-            const { data: comments } = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-            });
-            const existing = comments.find(c => c.body.includes(marker));
-            return { comment_id: existing ? existing.id : null };
-      - name: Comment on PR
-        if: github.event.action != 'closed'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const marker = '<!-- pr-preview -->';
-            const baseUrl = '${{ needs.build.outputs.base_url }}';
-            const prNumber = context.payload.pull_request.number;
-            const body = `${marker}\n🚀 **Preview deployment:** ${baseUrl}/pulls/${prNumber}/`;
-            const commentId = ${{ fromJson(steps.find-comment.outputs.result).comment_id }};
-            if (commentId) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: commentId,
-                body: body,
-              });
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: prNumber,
-                body: body,
-              });
-            }
-      - name: Remove comment on PR close
-        if: github.event.action == 'closed'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const marker = '<!-- pr-preview -->';
-            const commentId = ${{ fromJson(steps.find-comment.outputs.result).comment_id }};
-            if (commentId) {
-              await github.rest.issues.deleteComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: commentId,
-              });
-            }
-  comment-failure:
-    if: always() && github.event_name == 'pull_request' && (needs.build.result == 'failure' || needs.deploy.result == 'failure')
-    runs-on: ubuntu-latest
-    needs: [build, deploy]
-    steps:
-      - name: Find existing comment
-        id: find-comment
-        uses: actions/github-script@v7
-        with:
-          result-encoding: json
-          script: |
-            const marker = '<!-- pr-preview -->';
-            const { data: comments } = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-            });
-            const existing = comments.find(c => c.body.includes(marker));
-            return { comment_id: existing ? existing.id : null };
-      - name: Comment failure on PR
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const marker = '<!-- pr-preview -->';
-            const body = `${marker}\n❌ **Preview deployment failed.** [View workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`;
-            const commentId = ${{ fromJson(steps.find-comment.outputs.result).comment_id }};
-            if (commentId) {
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: commentId,
-                body: body,
-              });
-            } else {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request.number,
-                body: body,
-              });
-            }
