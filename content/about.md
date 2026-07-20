@@ -39,4 +39,4 @@ I'm Azhar Momin, a computer science student and an OSS lover.
 
 ## Credits
 - [Hugo](https://gohugo.io/) for static site generation
-- Modified version of [Rusty-Typewriter](https://github.com/math-queiroz/rusty-typewriter) theme used for this site
+- Modified version of the [Rusty-Typewriter](https://github.com/math-queiroz/rusty-typewriter) theme used for this site
