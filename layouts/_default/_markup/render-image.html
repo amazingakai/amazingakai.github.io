@@ -1,0 +1,31 @@
+{{- $dest := .Destination -}}
+{{- $alt := .Text -}}
+{{- $title := .Title -}}
+
+{{- $ext := path.Ext $dest -}}
+{{- $base := strings.TrimSuffix $ext $dest -}}
+
+{{- if hasSuffix $base "-light" -}}
+  <img
+    src="{{ $dest | safeURL }}"
+    alt="{{ $alt }}"
+    class="theme-image__light"
+    {{- with $title }} title="{{ . }}"{{ end }}
+    loading="lazy"
+    decoding="async">
+{{- else if hasSuffix $base "-dark" -}}
+  <img
+    src="{{ $dest | safeURL }}"
+    alt="{{ $alt }}"
+    class="theme-image__dark"
+    {{- with $title }} title="{{ . }}"{{ end }}
+    loading="lazy"
+    decoding="async">
+{{- else -}}
+  <img
+    src="{{ $dest | safeURL }}"
+    alt="{{ $alt }}"
+    {{- with $title }} title="{{ . }}"{{ end }}
+    loading="lazy"
+    decoding="async">
+{{- end -}}

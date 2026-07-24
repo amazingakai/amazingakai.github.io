@@ -2,7 +2,6 @@
 title = 'GSoC 2025: Expanding OSS-Fuzz Integration Across KDE Libraries'
 date = '2025-05-13T20:00:00+05:30'
 tags = ['GSoC', 'KDE', 'OSS-Fuzz']
-featured = true
 +++
 
 ## Introduction

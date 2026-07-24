@@ -12,6 +12,11 @@
         </time>
       </div>
       <small><p>{{- partial "components/summary.html" . -}}</p></small>
+      {{ if .Params.banner }}
+        <a href="{{ .RelPermalink }}">
+          <img class="flat-list-item-banner" src="{{ .Params.banner }}" alt="">
+        </a>
+      {{ end }}
     </div>
   {{- end -}}
 </div>
