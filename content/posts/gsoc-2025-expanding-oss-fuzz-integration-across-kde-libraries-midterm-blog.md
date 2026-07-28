@@ -16,7 +16,7 @@ The first step was migrating the existing build scripts and fuzz targets from th
 
 Then I worked on **KArchive** fuzzer doing mainly two changes: First was to split the fuzzer into separate targets for each archive format (like zip, tar, 7z, etc.) to improve coverage. Second was to add libFuzzer dictionary files to guide the fuzzing process better. Here is an image showing the coverage after these changes:
 
-![KArchive Fuzzer](/images/gsoc-2025-oss-fuzz-karchive-fuzzer.png)
+![KArchive Fuzzer](/images/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog/gsoc-2025-oss-fuzz-karchive-fuzzer.webp)
 
 This coverage was tested using a local corpus and it is pretty solid for just fuzzing the "reading" part. The coverage will increase on OSS-Fuzz by time as the corpus keeps growing. Splitting the fuzzer into multiple targets allows the fuzzer to focus on specific archive formats, which keeps the corpus size smaller and more efficient.
 
@@ -24,7 +24,7 @@ This coverage was tested using a local corpus and it is pretty solid for just fu
 
 After that, I focused on **KMime**. I created a fuzz target for it, which focused on the just the MIME parsing functionality. The parsing part of KMime is critical as it handles untrusted input, such as, from emails (in KMail).
 
-![KMime Fuzzer](/images/gsoc-2025-oss-fuzz-kmime-fuzzer.png)
+![KMime Fuzzer](/images/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog/gsoc-2025-oss-fuzz-kmime-fuzzer.webp)
 
 For KMime, I also added a libFuzzer-style dictionary file to help guide the fuzzing process. This helps the fuzzer generate more meaningful inputs, which can improve coverage and help the fuzzer reach deeper code paths.
 
@@ -36,7 +36,7 @@ After KMime, I moved on to **KDE Thumbnailers**. I created a fuzzer for the thum
 
 To avoid that, I wrote a custom build script that compiles just the thumbnailer source files and their direct dependencies. That keeps the fuzzers lightweight and focused only on the thumbnailing functionality.
 
-![KDE Thumbnailers Fuzzer](/images/gsoc-2025-oss-fuzz-kde-thumbnailers-fuzzer.png)
+![KDE Thumbnailers Fuzzer](/images/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog/gsoc-2025-oss-fuzz-kde-thumbnailers-fuzzer.webp)
 
 For these thumbnailers, I also created a dictionary file for each thumbnailer separately for the same reason as KMime.
 
@@ -46,7 +46,7 @@ At last, I worked on **KFileMetaData**. This library is used to extract metadata
 
 Initially, I made a single fuzzer that used Qt plugin system to load metadata extractors and ran the extractors based on content mimetype. However, this required using dynamic libraries which is not great for OSS-Fuzz integration. So I split the fuzzer into multiple targets, one for each extractor, and compiled them statically. This way, each fuzzer is focused on a specific extractor and doesn't depend on dynamic linking.
 
-![KFileMetaData Fuzzer](/images/gsoc-2025-oss-fuzz-kfilemetadata-fuzzer.png)
+![KFileMetaData Fuzzer](/images/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries-midterm-blog/gsoc-2025-oss-fuzz-kfilemetadata-fuzzer.webp)
 
 The thumbnailers and kfilemetadata currently have the highest coverage among all the fuzzers I've created so far, which is great! The coverage will improve and reach closer to 100% for them as the corpus grows on OSS-Fuzz.
 

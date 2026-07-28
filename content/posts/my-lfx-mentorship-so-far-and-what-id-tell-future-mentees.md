@@ -4,10 +4,10 @@ date = '2026-07-24T00:00:00+00:00'
 tags = ['LFX', 'OpenTelemetry', 'Open Source', 'Mentorship']
 featured = true
 summary = "How a slow Discord bot led me to OpenTelemetry, why I applied to LFX Mentorship, and some advice for anyone thinking about applying themselves."
-banner = '/images/opentelemetry-go-compile-instrumentation-hero.png'
+banner = '/images/my-lfx-mentorship-so-far-and-what-id-tell-future-mentees/opentelemetry-go-compile-instrumentation-hero.webp'
 +++
 
-![OpenTelemetry Go Compile Instrumentation Hero](/images/opentelemetry-go-compile-instrumentation-hero.png)
+![OpenTelemetry Go Compile Instrumentation Hero](/images/my-lfx-mentorship-so-far-and-what-id-tell-future-mentees/opentelemetry-go-compile-instrumentation-hero.webp)
 
 ## How I got here
 

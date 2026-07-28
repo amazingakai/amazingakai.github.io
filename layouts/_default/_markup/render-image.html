@@ -1,31 +1,24 @@
 {{- $dest := .Destination -}}
-{{- $alt := .Text -}}
+{{- $alt := .PlainText -}}
 {{- $title := .Title -}}
 
 {{- $ext := path.Ext $dest -}}
 {{- $base := strings.TrimSuffix $ext $dest -}}
 
+{{- $class := "" -}}
 {{- if hasSuffix $base "-light" -}}
-  <img
-    src="{{ $dest | safeURL }}"
-    alt="{{ $alt }}"
-    class="theme-image__light"
-    {{- with $title }} title="{{ . }}"{{ end }}
-    loading="lazy"
-    decoding="async">
+  {{- $class = "theme-image__light" -}}
 {{- else if hasSuffix $base "-dark" -}}
-  <img
-    src="{{ $dest | safeURL }}"
-    alt="{{ $alt }}"
-    class="theme-image__dark"
-    {{- with $title }} title="{{ . }}"{{ end }}
-    loading="lazy"
-    decoding="async">
-{{- else -}}
-  <img
-    src="{{ $dest | safeURL }}"
-    alt="{{ $alt }}"
-    {{- with $title }} title="{{ . }}"{{ end }}
-    loading="lazy"
-    decoding="async">
+  {{- $class = "theme-image__dark" -}}
 {{- end -}}
+
+<img
+  src="{{ $dest | safeURL }}"
+  alt="{{ $alt }}"
+  {{ with $title }}title="{{ . }}"{{ end }}
+  {{ with $class }}class="{{ . }}"{{ end }}
+  {{ range $k, $v := .Attributes }}
+    {{ if $v }}
+      {{ printf "%s=%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr }}
+    {{ end }}
+  {{ end }}>

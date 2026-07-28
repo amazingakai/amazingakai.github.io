@@ -17,7 +17,7 @@ While KDE already has some libraries integrated into OSS-Fuzz, such as [KArchive
 > As of May 2025, OSS-Fuzz has helped identify and fix over 13,000 vulnerabilities and 50,000 bugs across 1,000 projects.  
 > _Source: [OSS-Fuzz GitHub repository](https://github.com/google/oss-fuzz?tab=readme-ov-file#trophies)_
 
-![Overview of OSS-Fuzz](/images/gsoc-2025-oss-fuzz-overview.png)  
+![Overview of OSS-Fuzz](/images/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries/gsoc-2025-oss-fuzz-overview.webp)  
 _Image from [OSS-Fuzz GitHub repository](https://github.com/google/oss-fuzz), licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)._
 
 ## Project Goals
