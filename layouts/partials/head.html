@@ -18,6 +18,9 @@
 {{- $image := .Params.banner | default site.Params.image -}}
 
 <title>{{ $title }}</title>
+{{- if eq .Params.indexable false }}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
 {{- if $description }}
 <meta name="description" content="{{ $description }}">
 {{- end }}
@@ -29,9 +32,40 @@
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:locale" content="{{ site.Language.Locale | default "en_US" }}">
+{{- if .IsPage }}
+  {{- if not .Date.IsZero }}<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">{{ end }}
+  {{- if not .Lastmod.IsZero }}<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}">{{ end }}
+  {{- range .Params.tags }}<meta property="article:tag" content="{{ . }}">{{ end }}
+{{- end }}
 {{- if $image }}
 <meta property="og:image" content="{{ $image | absURL }}">
 {{- end }}
+
+<!-- Schema.org JSON-LD -->
+{{- if ne .Params.indexable false -}}
+{{- $schema := dict 
+  "@context" "https://schema.org"
+  "@type" (cond .IsPage "Article" "WebSite")
+  "name" $title
+  "url" .Permalink
+  "description" $description
+-}}
+{{- if .IsPage -}}
+  {{- $schema = merge $schema (dict 
+    "headline" .Title
+    "datePublished" (.Date.Format "2006-01-02T15:04:05-07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")
+    "author" (dict "@type" "Person" "name" site.Params.author.name)
+  ) -}}
+{{- end -}}
+{{- if $image -}}
+  {{- $schema = merge $schema (dict "image" ($image | absURL)) -}}
+{{- end -}}
+<script type="application/ld+json">
+{{ $schema | jsonify | safeJS }}
+</script>
+{{- end -}}
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="{{ if $image }}summary_large_image{{ else }}summary{{ end }}">

@@ -12,11 +12,21 @@
   {{- $class = "theme-image__dark" -}}
 {{- end -}}
 
+{{- $loading := "lazy" -}}
+{{- $fetchpriority := "" -}}
+{{- if not (.Page.Store.Get "hasImage") -}}
+  {{- .Page.Store.Set "hasImage" true -}}
+  {{- $loading = "eager" -}}
+  {{- $fetchpriority = "high" -}}
+{{- end -}}
+
 <img
   src="{{ $dest | safeURL }}"
   alt="{{ $alt }}"
   {{ with $title }}title="{{ . }}"{{ end }}
   {{ with $class }}class="{{ . }}"{{ end }}
+  loading="{{ $loading }}"
+  {{ with $fetchpriority }}fetchpriority="{{ . }}"{{ end }}
   {{ range $k, $v := .Attributes }}
     {{ if $v }}
       {{ printf "%s=%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr }}
