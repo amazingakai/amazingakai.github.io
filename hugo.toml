@@ -8,6 +8,7 @@ enableRobotsTXT = true
 
 [params]
   summaryLength = 1
+  description = "I'm a computer science student interested in low level programming, distributed systems, and observability tooling. I write mostly C++, Rust, Go, and Python."
 
 [params.author]
   name = 'Azhar Momin'
