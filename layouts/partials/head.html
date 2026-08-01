@@ -20,7 +20,7 @@
 <title>{{ $title }}</title>
 {{- if eq .Params.indexable false }}
 <meta name="robots" content="noindex, nofollow">
-{{- end }}
+{{- else }}
 {{- if $description }}
 <meta name="description" content="{{ $description }}">
 {{- end }}
@@ -43,7 +43,6 @@
 {{- end }}
 
 <!-- Schema.org JSON-LD -->
-{{- if ne .Params.indexable false -}}
 {{- $schema := dict 
   "@context" "https://schema.org"
   "@type" (cond .IsPage "Article" "WebSite")
@@ -69,7 +68,6 @@
 <script type="application/ld+json">
 {{ $schema | jsonify | safeJS }}
 </script>
-{{- end -}}
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="{{ if $image }}summary_large_image{{ else }}summary{{ end }}">
@@ -77,6 +75,7 @@
 <meta name="twitter:description" content="{{ $description }}">
 {{- if $image }}
 <meta name="twitter:image" content="{{ $image | absURL }}">
+{{- end }}
 {{- end }}
 
 {{- partialCached "head/css.html" . -}}
