@@ -48,7 +48,7 @@ of [Albert Astals Cid](https://invent.kde.org/aacid). At the time, I was
 a total newbie to open source. That period taught me the ropes, both
 technically and in terms of how contributing to a real project actually
 works. I've written about that in more detail separately
-([link](/posts/gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries)),
+([link]({{< ref "gsoc-2025-expanding-oss-fuzz-integration-across-kde-libraries.md" >}})),
 and it's worth mentioning here because it's a big part of why I felt
 ready to jump into OTel later.
 
