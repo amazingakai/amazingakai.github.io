@@ -235,3 +235,67 @@
   margin: 0;
   color: inherit;
 }
+
+/* Newsletter CTA */
+.newsletter-box {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border: 1px var(--dim-color) solid;
+  border-radius: 0.5rem;
+}
+
+.newsletter-header h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.newsletter-header p {
+  font-family: var(--font-family-summary);
+  color: var(--quote-text-color);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.newsletter-input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletter-input-group input[type="email"] {
+  flex-grow: 1;
+  padding: 0.6rem 1rem;
+  border: 1px var(--dim-color) solid;
+  border-radius: 6px;
+  background-color: transparent;
+  color: var(--body-text-color);
+  font-family: inherit;
+  transition: border-color 80ms;
+}
+
+.newsletter-input-group input[type="email"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.newsletter-input-group input[type="submit"] {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: inherit;
+  transition: opacity 80ms;
+}
+
+.newsletter-input-group input[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 500px) {
+  .newsletter-input-group {
+    flex-direction: column;
+  }
+}
