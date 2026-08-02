@@ -1,0 +1,39 @@
+name: Send Buttondown Newsletter
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'content/posts/*.md'
+
+jobs:
+  send_newsletter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Fetch the last two commits to find the diff
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Determine Post Path
+        id: get_post
+        run: |
+          # Find the newly added or modified markdown file in content/posts/
+          POST_PATH=$(git diff --name-only HEAD^ HEAD | grep '^content/posts/.*\.md$' | head -n 1)
+          if [ -z "$POST_PATH" ]; then
+            echo "No new markdown post found in this commit. Skipping."
+            exit 0
+          fi
+          echo "post_path=$POST_PATH" >> $GITHUB_OUTPUT
+
+      - name: Send to Buttondown
+        if: steps.get_post.outputs.post_path != ''
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: python .github/scripts/send_newsletter.py "${{ steps.get_post.outputs.post_path }}"
