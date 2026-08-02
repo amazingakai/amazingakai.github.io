@@ -67,19 +67,28 @@ main {
 }
 
 .gsc-comment-box,
-.gsc-comment-box-write,
+.gsc-comment-box-tabs,
+.gsc-comment-box-main,
 .gsc-comment-box-bottom {
-  background-color: transparent !important;
-  border: none !important;
+  background-color: #000000 !important;
+  border-radius: 0.5rem;
+}
+
+.gsc-comment-box-write {
+  background-color: #000000 !important;
+}
+
+.gsc-comment-box {
+  border: 1px solid var(--color-border-default) !important;
   box-shadow: none !important;
 }
 
-.gsc-timeline { 
-  flex-direction: column-reverse; 
+.gsc-timeline {
+  flex-direction: column-reverse;
 }
 
-.gsc-comments > .gsc-comment-box { 
-  margin-bottom: 2rem; 
+.gsc-comments > .gsc-comment-box {
+  margin-bottom: 2rem;
 }
 
 .gsc-comment {
