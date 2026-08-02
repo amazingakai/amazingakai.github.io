@@ -1,0 +1,24 @@
+{{ if site.Params.giscus.enable }}
+<section class="comments-section" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border, #eaeaea);">
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ site.Params.giscus.repo }}"
+          data-repo-id="{{ site.Params.giscus.repo_id }}"
+          data-category="{{ site.Params.giscus.category | default "Announcements" }}"
+          data-category-id="{{ site.Params.giscus.category_id }}"
+          data-mapping="{{ site.Params.giscus.mapping | default "pathname" }}"
+          data-strict="{{ site.Params.giscus.strict | default "0" }}"
+          data-reactions-enabled="{{ site.Params.giscus.reactions_enabled | default "1" }}"
+          data-emit-metadata="{{ site.Params.giscus.emit_metadata | default "0" }}"
+          data-input-position="{{ site.Params.giscus.input_position | default "top" }}"
+          {{- $theme := site.Params.giscus.theme | default "preferred_color_scheme" -}}
+          {{- if strings.HasSuffix $theme ".css" -}}
+            {{- $theme = $theme | absURL -}}
+          {{- end -}}
+          data-theme="{{ $theme }}"
+          data-lang="{{ site.Params.giscus.lang | default "en" }}"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</section>
+{{ end }}
