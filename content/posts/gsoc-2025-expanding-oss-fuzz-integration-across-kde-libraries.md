@@ -32,15 +32,19 @@ The main goal of this project is to integrate more KDE libraries into OSS-Fuzz. 
 The objective is to integrate as many as KDE libraries possible into OSS-Fuzz by the end of the GSoC period, thereby enhancing the overall security and reliability of KDE software.
 
 ## Initial Libraries
+
 The following libraries have been identified for initial integration into OSS-Fuzz:
 
 ### KFileMetaData
+
 [KFileMetaData](https://invent.kde.org/frameworks/kfilemetadata) is a library for reading and writing metadata in files. It supports various file formats, including images, audio, and video files. KFileMetaData is used by [Baloo](https://invent.kde.org/frameworks/baloo) for indexing purposes. This means that many files may be processed by KFileMetaData without the user's knowledge, making it a critical library to fuzz.
 
 ### KMime
+
 [KMime](https://invent.kde.org/frameworks/kmime) is a library to assist handling MIME data. It provides classes for parsing MIME messages. KMime is used by various KDE applications, including KMail. This again means that the library may process malformed or unexpected data without the user's knowledge.
 
 ### KDE-Thumbnailers
+
 KDE has many thumbnailer libraries, such as [KDE-Graphics-Thumbnailers](https://invent.kde.org/graphics/kdegraphics-thumbnailers). These libraries are used to generate thumbnails for various file formats, including images, videos, and documents. These thumbnailers are used by Dolphin/KIO to generate previews of files and can be exposed to untrusted data.
 
 ## Conclusion

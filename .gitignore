@@ -10,3 +10,9 @@ hugo.darwin
 hugo.linux
 
 /.hugo_build.lock
+
+# Node.js (Linting/Formatting)
+node_modules/
+
+# Caches
+.lycheecache/

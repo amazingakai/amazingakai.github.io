@@ -11,10 +11,16 @@
           {{- dateFormat (or .Site.Params.dateFormat "Jan 2") .Date -}}
         </time>
       </div>
-      <div class="list-group-summary content-font">{{- partial "components/summary.html" . -}}</div>
+      <div class="list-group-summary content-font">
+        {{- partial "components/summary.html" . -}}
+      </div>
       {{ if .Params.banner }}
         <a href="{{ .RelPermalink }}">
-          <img class="flat-list-item-banner" src="{{ .Params.banner }}" alt="">
+          <img
+            class="flat-list-item-banner"
+            src="{{ .Params.banner }}"
+            alt=""
+          />
         </a>
       {{ end }}
     {{- end -}}

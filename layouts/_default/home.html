@@ -3,6 +3,7 @@
 
   {{- $indexablePages := where site.RegularPages "Params.indexable" "ne" false -}}
 
+
   <div style="width:95%;margin:0 auto;">
     <div class="show-md" style="display:none;">
       {{- partial "search_bar" . -}}
@@ -10,20 +11,21 @@
 
     {{- $featured := where $indexablePages "Params.featured" true -}}
     {{- if (and $featured site.Params.rtwt.home.showFeatured) -}}
-        {{- partial "home/micro-list.html" (dict "items" $featured "title" (i18n "featured_posts")) -}}
+      {{- partial "home/micro-list.html" (dict "items" $featured "title" (i18n "featured_posts")) -}}
     {{- end -}}
 
     {{- if and site.RegularPages site.Params.rtwt.home.showRecent -}}
-        {{- $recentMonths := site.Params.rtwt.home.recentMonths | default 2 -}}
-        {{- $cutoffDate := now.AddDate 0 (mul $recentMonths -1) 0 -}}
+      {{- $recentMonths := site.Params.rtwt.home.recentMonths | default 2 -}}
+      {{- $cutoffDate := now.AddDate 0 (mul $recentMonths -1) 0 -}}
 
-        {{- $sourcePages := cond site.Params.rtwt.home.hideRecentWhenFeatured (where $indexablePages "Params.featured" "!=" true) site.RegularPages -}}
-        {{- $recentPages := where $sourcePages "Params.date" "ge" $cutoffDate -}}
+      {{- $sourcePages := cond site.Params.rtwt.home.hideRecentWhenFeatured (where $indexablePages "Params.featured" "!=" true) site.RegularPages -}}
+      {{- $recentPages := where $sourcePages "Params.date" "ge" $cutoffDate -}}
 
-        {{- if gt (len $recentPages) 0 -}}
-            {{- partial "home/micro-list.html" (dict "items" $recentPages "title" (i18n "recent_posts")) -}}
-        {{- end -}}
+      {{- if gt (len $recentPages) 0 -}}
+        {{- partial "home/micro-list.html" (dict "items" $recentPages "title" (i18n "recent_posts")) -}}
+      {{- end -}}
     {{- end -}}
+
 
     <div class="show-md" style="display:none; margin-top: 2rem;">
       {{- partial "newsletter.html" . -}}
@@ -32,5 +34,5 @@
 {{- end -}}
 
 {{- define "side" -}}
-    {{- partial "side/home.html" . -}}
+  {{- partial "side/home.html" . -}}
 {{- end -}}

@@ -1,7 +1,7 @@
 /* main and native elements rules */
 
-html[color-scheme^='dark'] .dark-icon,
-html[color-scheme^='light'] .light-icon {
+html[color-scheme^="dark"] .dark-icon,
+html[color-scheme^="light"] .light-icon {
   display: none;
 }
 
@@ -9,7 +9,8 @@ html {
   --bgc-transition: background-color 100ms ease-in;
 
   scroll-behavior: smooth;
-  ::-moz-selection, ::selection {
+  ::-moz-selection,
+  ::selection {
     background: var(--selection-color);
   }
 }
@@ -25,7 +26,6 @@ body {
   margin: 1rem;
   transition: var(--bgc-transition);
 }
-
 
 div#container {
   display: flex;
@@ -45,7 +45,8 @@ div#main-pane {
   padding: 1rem;
 }
 
-#side-pane, #newsletter-pane {
+#side-pane,
+#newsletter-pane {
   width: 224px;
   height: fit-content;
   padding: 1rem;
@@ -67,18 +68,19 @@ header#main-header {
 }
 
 div#nav-menu {
-  display: flex
+  display: flex;
 }
 
 @media (max-width: 1128px) {
-  #side-pane, #newsletter-pane {
+  #side-pane,
+  #newsletter-pane {
     display: none;
   }
 }
 
 @media (min-width: 768px) {
   div#nav-dropdown-menu {
-    display: none
+    display: none;
   }
 }
 
@@ -179,23 +181,24 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   border: 1px var(--dim-color) solid;
-  padding: .2rem .5rem;
+  padding: 0.2rem 0.5rem;
 }
 
 pre:has(code) {
   display: grid;
   overflow-x: auto;
-  padding: .8rem;
-  border-radius: .3rem;
+  padding: 0.8rem;
+  border-radius: 0.3rem;
   color: var(--code-text-color);
   background-color: var(--code-background-color) !important;
 }
 
 :not(pre) > code {
-  padding: .3rem .3rem 0;
-  border-radius: .3rem;
+  padding: 0.3rem 0.3rem 0;
+  border-radius: 0.3rem;
   color: var(--code-text-color);
   background-color: var(--code-background-color) !important;
 }

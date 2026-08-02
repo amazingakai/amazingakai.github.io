@@ -1,7 +1,11 @@
 <form onsubmit="searchBarSubmit(event)">
   <div class="search-bar">
     {{- partial "svg/search.svg" -}}
-      <input id="searchInput" type="text" placeholder="{{- i18n "search_placeholder" -}}"/>
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="{{- i18n "search_placeholder" -}}"
+    />
   </div>
 </form>
 

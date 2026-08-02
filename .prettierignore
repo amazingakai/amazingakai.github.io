@@ -1,0 +1,7 @@
+public/
+resources/
+.hugo_build.lock
+.git/
+node_modules/
+layouts/_default/home.searchindex.json
+assets/js/search/flexsearch.compact.js

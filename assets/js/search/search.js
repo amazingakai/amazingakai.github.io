@@ -1,42 +1,42 @@
 // base from https://github.com/frjo/hugo-theme-zen/blob/main/assets/js/search.js
-import * as params from '@params';
+import * as params from "@params";
 
 (function () {
   const index = new FlexSearch.Document({
     document: {
-      id: 'id',
-      index: ['title', 'tags', 'content', 'date'],
-      store: ['title', 'summary', 'date', 'permalink', 'banner'],
+      id: "id",
+      index: ["title", "tags", "content", "date"],
+      store: ["title", "summary", "date", "permalink", "banner"]
     },
-    tokenize: 'forward',
+    tokenize: "forward"
   });
 
   function showResults(items) {
-    const template = document.querySelector('template').content;
+    const template = document.querySelector("template").content;
     const fragment = document.createDocumentFragment();
 
-    const results = document.querySelector('.search-results');
-    results.textContent = '';
+    const results = document.querySelector(".search-results");
+    results.textContent = "";
 
     for (const id in items) {
       const item = items[id];
       const result = template.cloneNode(true);
-      const a = result.querySelector('a');
-      const time = result.querySelector('time');
-      const content = result.querySelector('.content');
+      const a = result.querySelector("a");
+      const time = result.querySelector("time");
+      const content = result.querySelector(".content");
       a.innerHTML = item.title;
       a.href = item.permalink;
       time.innerText = item.date;
       content.innerHTML = item.summary;
       if (item.banner) {
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = item.permalink;
-        const img = document.createElement('img');
-        img.className = 'flat-list-item-banner';
+        const img = document.createElement("img");
+        img.className = "flat-list-item-banner";
         img.src = item.banner;
-        img.alt = '';
+        img.alt = "";
         a.appendChild(img);
-        result.querySelector('header').appendChild(a);
+        result.querySelector("header").appendChild(a);
       }
       fragment.appendChild(result);
     }
@@ -44,11 +44,11 @@ import * as params from '@params';
   }
 
   function doSearch(q) {
-    const query = q || document.querySelector('.search-text').value.trim();
+    const query = q || document.querySelector(".search-text").value.trim();
     const results = index.search({
       query: query,
       enrich: true,
-      limit: params.searchLimit,
+      limit: params.searchLimit
     });
     const items = {};
     results.forEach(function (result) {
@@ -60,21 +60,21 @@ import * as params from '@params';
   }
 
   function enableUI(searchform) {
-    searchform.addEventListener('submit', function (e) {
+    searchform.addEventListener("submit", function (e) {
       e.preventDefault();
       doSearch();
     });
-    searchform.addEventListener('input', function () {
+    searchform.addEventListener("input", function () {
       doSearch();
     });
-    document.querySelector('.search-loading').classList.add('hidden');
-    document.querySelector('.search-bar').classList.remove('hidden');
-    document.querySelector('.search-text').focus();
+    document.querySelector(".search-loading").classList.add("hidden");
+    document.querySelector(".search-bar").classList.remove("hidden");
+    document.querySelector(".search-text").focus();
   }
 
   function buildIndex(cb) {
-    const searchindex = params.basePath + 'searchindex.json';
-    document.querySelector('.search-loading').classList.remove('hidden');
+    const searchindex = params.basePath + "searchindex.json";
+    document.querySelector(".search-loading").classList.remove("hidden");
     fetch(searchindex)
       .then(function (response) {
         return response.json();
@@ -87,13 +87,13 @@ import * as params from '@params';
       .then(cb);
   }
 
-  const searchform = document.querySelector('.search-form');
+  const searchform = document.querySelector(".search-form");
   if (searchform) {
     buildIndex(function () {
       const q = new URLSearchParams(window.location.search).get("q");
-      document.querySelector('.search-text').value = q || '';
+      document.querySelector(".search-text").value = q || "";
       doSearch(q);
     });
-    enableUI(searchform)
+    enableUI(searchform);
   }
 })();

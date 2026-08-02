@@ -1,0 +1,14 @@
+config:
+  default: true
+  # Line length limitation is annoying for blog posts with URLs
+  MD013: false
+  # Hugo uses a lot of inline HTML natively
+  MD033: false
+  # Trailing spaces are handled by prettier anyway
+  MD009: false
+  # Multiple top-level headers (sometimes useful for Hugo partials)
+  MD025: false
+ignores:
+  - "public/**"
+  - "resources/**"
+  - "node_modules/**"

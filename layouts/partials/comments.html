@@ -1,12 +1,12 @@
 {{ if site.Params.giscus.enable }}
-<section class="comments-section" style="margin-top: 3rem;">
-  <div class="giscus"></div>
+  <section class="comments-section" style="margin-top: 3rem;">
+    <div class="giscus"></div>
   <script>
     function getGiscusTheme() {
       const theme = document.documentElement.getAttribute("color-scheme");
       // Fallback to dark if not explicitly light
-      return theme === "light" 
-        ? "{{ "/css/giscus-light.css" | absURL }}" 
+      return theme === "light"
+        ? "{{ "/css/giscus-light.css" | absURL }}"
         : "{{ "/css/giscus-dark.css" | absURL }}";
     }
 
@@ -53,5 +53,5 @@
       observer.observe(document.documentElement, { attributes: true });
     });
   </script>
-</section>
+  </section>
 {{ end }}

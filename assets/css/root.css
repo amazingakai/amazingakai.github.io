@@ -1,39 +1,39 @@
 /* variables in root element */
 
 :root {
-    --font-family-main: "Bricolage Grotesque", sans-serif;
-    --font-weigth-main: 500;
-    --font-family-content: "Bricolage Grotesque", serif;
-    --font-weight-content: 500;
-    --font-family-summary: "Bricolage Grotesque", serif;
-    --font-weight-summary: 500;
+  --font-family-main: "Bricolage Grotesque", sans-serif;
+  --font-weigth-main: 500;
+  --font-family-content: "Bricolage Grotesque", serif;
+  --font-weight-content: 500;
+  --font-family-summary: "Bricolage Grotesque", serif;
+  --font-weight-summary: 500;
 
-    --dim-color: #88888844;
+  --dim-color: #88888844;
 
-    --quote-text-color: #888;
-    --code-text-color: #f0efea;
+  --quote-text-color: #888;
+  --code-text-color: #f0efea;
 }
 
 :root[color-scheme^="light"] {
-    --body-text-color: #000000;
-    --body-background-color: #ffffff;
+  --body-text-color: #000000;
+  --body-background-color: #ffffff;
 
-    --primary-color: #3a7bd5;
-    --selection-color: #a2c4f5;
+  --primary-color: #3a7bd5;
+  --selection-color: #a2c4f5;
 
-    --code-background-color: #4a4a4a;
+  --code-background-color: #4a4a4a;
 
-    --dim-opacity: 65%;
+  --dim-opacity: 65%;
 }
 
 :root[color-scheme^="dark"] {
-    --body-text-color: #ffffff;
-    --body-background-color: #000000;
+  --body-text-color: #ffffff;
+  --body-background-color: #000000;
 
-    --primary-color: #3a7bd5;
-    --selection-color: #1f4e8c;
+  --primary-color: #3a7bd5;
+  --selection-color: #1f4e8c;
 
-    --code-background-color: #1a1a1a;
+  --code-background-color: #1a1a1a;
 
-    --dim-opacity: 50%;
+  --dim-opacity: 50%;
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500&display=swap");
 
 main {
   --color-canvas-default: #ffffff;
@@ -28,8 +28,8 @@ main {
   --color-btn-primary-hover-border: transparent;
   --color-btn-primary-selected-bg: #1f4e8c;
   --color-btn-primary-selected-shadow: 0 0 transparent;
-  --color-btn-primary-disabled-text: rgba(255,255,255,0.5);
-  --color-btn-primary-disabled-bg: rgba(58,123,213,0.5);
+  --color-btn-primary-disabled-text: rgba(255, 255, 255, 0.5);
+  --color-btn-primary-disabled-bg: rgba(58, 123, 213, 0.5);
   --color-btn-primary-disabled-border: transparent;
 
   --color-btn-text: #24292f;
@@ -45,7 +45,10 @@ main {
 }
 
 * {
-  font-family: "Bricolage Grotesque", -apple-system, sans-serif !important;
+  font-family:
+    "Bricolage Grotesque",
+    -apple-system,
+    sans-serif !important;
 }
 
 .form-control {
@@ -82,8 +85,12 @@ main {
   box-shadow: none !important;
 }
 
-.gsc-timeline { flex-direction: column-reverse; }
-.gsc-comments > .gsc-comment-box { margin-bottom: 2rem; }
+.gsc-timeline {
+  flex-direction: column-reverse;
+}
+.gsc-comments > .gsc-comment-box {
+  margin-bottom: 2rem;
+}
 
 .gsc-comment {
   background-color: transparent !important;

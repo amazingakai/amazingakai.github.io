@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'content/posts/*.md'
+      - "content/posts/*.md"
 
 jobs:
   send_newsletter:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: Determine Post Path
         id: get_post

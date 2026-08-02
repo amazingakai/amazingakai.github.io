@@ -20,6 +20,7 @@
   {{- $fetchpriority = "high" -}}
 {{- end -}}
 
+
 <img
   src="{{ $dest | safeURL }}"
   alt="{{ $alt }}"
@@ -31,4 +32,5 @@
     {{ if $v }}
       {{ printf "%s=%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr }}
     {{ end }}
-  {{ end }}>
+  {{ end }}
+/>
