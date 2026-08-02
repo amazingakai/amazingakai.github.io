@@ -1,0 +1,85 @@
+/* Giscus Custom Light Theme */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500&display=swap');
+
+main {
+  --color-canvas-default: #ffffff;
+  --color-canvas-overlay: #f6f8fa;
+  --color-canvas-inset: #ffffff;
+  --color-canvas-subtle: #f6f8fa;
+
+  --color-border-default: #00000022;
+  --color-border-muted: transparent;
+  --color-neutral-muted: #00000022;
+
+  --color-fg-default: #000000;
+  --color-fg-muted: #57606a;
+  --color-fg-subtle: #6e7781;
+
+  --color-accent-fg: #3a7bd5;
+  --color-accent-emphasis: #3a7bd5;
+  --color-accent-muted: rgba(58, 123, 213, 0.4);
+  --color-accent-subtle: rgba(58, 123, 213, 0.15);
+
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #3a7bd5;
+  --color-btn-primary-border: transparent;
+  --color-btn-primary-shadow: 0 0 transparent;
+  --color-btn-primary-inset-shadow: 0 0 transparent;
+  --color-btn-primary-hover-bg: #3269b5;
+  --color-btn-primary-hover-border: transparent;
+  --color-btn-primary-selected-bg: #1f4e8c;
+  --color-btn-primary-selected-shadow: 0 0 transparent;
+  --color-btn-primary-disabled-text: rgba(255,255,255,0.5);
+  --color-btn-primary-disabled-bg: rgba(58,123,213,0.5);
+  --color-btn-primary-disabled-border: transparent;
+
+  --color-btn-text: #24292f;
+  --color-btn-bg: #f6f8fa;
+  --color-btn-border: #00000022;
+  --color-btn-shadow: 0 0 transparent;
+  --color-btn-inset-shadow: 0 0 transparent;
+  --color-btn-hover-bg: #f3f4f6;
+  --color-btn-hover-border: #00000044;
+  --color-btn-active-bg: #ebecf0;
+  --color-btn-active-border: #00000044;
+  --color-btn-selected-bg: #ebecf0;
+}
+
+* {
+  font-family: "Bricolage Grotesque", -apple-system, sans-serif !important;
+}
+
+.form-control {
+  background-color: var(--color-canvas-inset) !important;
+  border: 1px solid var(--color-border-default) !important;
+  border-radius: 0.5rem !important;
+  color: var(--color-fg-default) !important;
+}
+.form-control:focus {
+  border-color: var(--color-accent-fg) !important;
+  box-shadow: 0 0 0 1px var(--color-accent-fg) !important;
+}
+
+.gsc-header,
+.gsc-reactions-count,
+.gsc-comment-box-textarea-extras {
+  display: none !important;
+}
+
+.gsc-comment-box,
+.gsc-comment-box-write,
+.gsc-comment-box-bottom {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.gsc-timeline { flex-direction: column-reverse; }
+.gsc-comments > .gsc-comment-box { margin-bottom: 2rem; }
+
+.gsc-comment {
+  background-color: transparent !important;
+  border: 1px solid var(--color-border-default) !important;
+  border-radius: 0.5rem !important;
+  margin-bottom: 1rem;
+}

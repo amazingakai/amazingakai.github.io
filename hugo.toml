@@ -84,5 +84,4 @@ enableRobotsTXT = true
   reactions_enabled = "0"
   emit_metadata = "0"
   input_position = "top"
-  theme = "/css/giscus-theme.css"
   lang = "en"

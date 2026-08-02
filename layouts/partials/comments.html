@@ -1,24 +1,57 @@
 {{ if site.Params.giscus.enable }}
 <section class="comments-section" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border, #eaeaea);">
-  <script src="https://giscus.app/client.js"
-          data-repo="{{ site.Params.giscus.repo }}"
-          data-repo-id="{{ site.Params.giscus.repo_id }}"
-          data-category="{{ site.Params.giscus.category | default "Announcements" }}"
-          data-category-id="{{ site.Params.giscus.category_id }}"
-          data-mapping="{{ site.Params.giscus.mapping | default "pathname" }}"
-          data-strict="{{ site.Params.giscus.strict | default "0" }}"
-          data-reactions-enabled="{{ site.Params.giscus.reactions_enabled | default "1" }}"
-          data-emit-metadata="{{ site.Params.giscus.emit_metadata | default "0" }}"
-          data-input-position="{{ site.Params.giscus.input_position | default "top" }}"
-          {{- $theme := site.Params.giscus.theme | default "preferred_color_scheme" -}}
-          {{- if strings.HasSuffix $theme ".css" -}}
-            {{- $theme = $theme | absURL -}}
-          {{- end -}}
-          data-theme="{{ $theme }}"
-          data-lang="{{ site.Params.giscus.lang | default "en" }}"
-          data-loading="lazy"
-          crossorigin="anonymous"
-          async>
+  <div class="giscus"></div>
+  <script>
+    function getGiscusTheme() {
+      const theme = document.documentElement.getAttribute("color-scheme");
+      // Fallback to dark if not explicitly light
+      return theme === "light" 
+        ? "{{ "/css/giscus-light.css" | absURL }}" 
+        : "{{ "/css/giscus-dark.css" | absURL }}";
+    }
+
+    function loadGiscus() {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "https://giscus.app/client.js";
+      script.setAttribute("data-repo", "{{ site.Params.giscus.repo }}");
+      script.setAttribute("data-repo-id", "{{ site.Params.giscus.repo_id }}");
+      script.setAttribute("data-category", "{{ site.Params.giscus.category | default "Announcements" }}");
+      script.setAttribute("data-category-id", "{{ site.Params.giscus.category_id }}");
+      script.setAttribute("data-mapping", "{{ site.Params.giscus.mapping | default "pathname" }}");
+      script.setAttribute("data-strict", "{{ site.Params.giscus.strict | default "0" }}");
+      script.setAttribute("data-reactions-enabled", "{{ site.Params.giscus.reactions_enabled | default "1" }}");
+      script.setAttribute("data-emit-metadata", "{{ site.Params.giscus.emit_metadata | default "0" }}");
+      script.setAttribute("data-input-position", "{{ site.Params.giscus.input_position | default "top" }}");
+      script.setAttribute("data-theme", getGiscusTheme());
+      script.setAttribute("data-lang", "{{ site.Params.giscus.lang | default "en" }}");
+      script.setAttribute("data-loading", "lazy");
+      script.setAttribute("crossorigin", "anonymous");
+      script.async = true;
+      document.querySelector(".giscus").appendChild(script);
+    }
+
+    // Initialize Giscus when DOM is ready
+    window.addEventListener("DOMContentLoaded", () => {
+      loadGiscus();
+
+      // Watch for theme toggles to dynamically update Giscus without reloading
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === "color-scheme") {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+              iframe.contentWindow.postMessage(
+                { giscus: { setConfig: { theme: getGiscusTheme() } } },
+                'https://giscus.app'
+              );
+            }
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, { attributes: true });
+    });
   </script>
 </section>
 {{ end }}
