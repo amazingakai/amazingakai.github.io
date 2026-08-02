@@ -45,7 +45,7 @@ div#main-pane {
   padding: 1rem;
 }
 
-aside#side-pane {
+#side-pane, #newsletter-pane {
   width: 224px;
   height: fit-content;
   padding: 1rem;
@@ -55,7 +55,7 @@ aside#side-pane {
   padding-top: 5px;
 }
 
-aside.side-sticky {
+.side-sticky {
   position: sticky;
   top: 1rem;
   bottom: 3rem;
@@ -71,7 +71,7 @@ div#nav-menu {
 }
 
 @media (max-width: 1128px) {
-  aside#side-pane {
+  #side-pane, #newsletter-pane {
     display: none;
   }
 }
