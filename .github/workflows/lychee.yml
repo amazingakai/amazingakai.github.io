@@ -27,7 +27,8 @@ jobs:
             --cache
             --max-cache-age 1d
             --no-progress
-            --exclude "^/"
+            --base https://amazingakai.github.io
+            --exclude "amazingakai.github.io"
             --exclude "linkedin.com"
             --exclude "twitter.com"
             "content/**/*.md"
