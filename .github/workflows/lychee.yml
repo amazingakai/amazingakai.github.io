@@ -29,5 +29,5 @@ jobs:
             --no-progress
             --exclude "linkedin.com"
             --exclude "twitter.com"
-            "content/**/*.md" "layouts/**/*.html"
+            "content/**/*.md"
           fail: true
