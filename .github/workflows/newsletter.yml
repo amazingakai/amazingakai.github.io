@@ -14,26 +14,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2 # Fetch the last two commits to find the diff
+          fetch-depth: 0 # Fetch full history to reliably diff multiple commits
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
-      - name: Determine Post Path
-        id: get_post
-        run: |
-          # Find the newly added markdown file in content/posts/
-          POST_PATH=$(git diff --name-only --diff-filter=A HEAD^ HEAD | grep '^content/posts/.*\.md$' | head -n 1)
-          if [ -z "$POST_PATH" ]; then
-            echo "No new markdown post found in this commit. Skipping."
-            exit 0
-          fi
-          echo "post_path=$POST_PATH" >> $GITHUB_OUTPUT
-
       - name: Send to Buttondown
-        if: steps.get_post.outputs.post_path != ''
         env:
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
-        run: python .github/scripts/send_newsletter.py "${{ steps.get_post.outputs.post_path }}"
+        run: |
+          BEFORE_SHA="${{ github.event.before }}"
+          # Fallback to HEAD^ if before is somehow missing or all-zeros (e.g. first push)
+          if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ] || [ -z "$BEFORE_SHA" ]; then
+            BEFORE_SHA="HEAD^"
+          fi
+
+          # Find all newly added markdown files in content/posts/ across the push
+          POST_PATHS=$(git diff --name-only --diff-filter=A $BEFORE_SHA ${{ github.sha }} | grep '^content/posts/.*\.md$' || true)
+
+          if [ -z "$POST_PATHS" ]; then
+            echo "No new markdown posts found in this push. Skipping."
+            exit 0
+          fi
+
+          for POST_PATH in $POST_PATHS; do
+            echo "Sending newsletter for $POST_PATH..."
+            python .github/scripts/send_newsletter.py "$POST_PATH"
+          done
