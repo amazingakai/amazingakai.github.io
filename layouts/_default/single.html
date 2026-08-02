@@ -11,6 +11,10 @@
     {{- .Content -}}
   </section>
 
+  <div class="show-md" style="display:none; margin-top: 2rem;">
+    {{- partial "newsletter.html" . -}}
+  </div>
+
   {{- partial "comments.html" . -}}
 {{- end -}}
 
