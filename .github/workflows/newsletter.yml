@@ -24,8 +24,8 @@ jobs:
       - name: Determine Post Path
         id: get_post
         run: |
-          # Find the newly added or modified markdown file in content/posts/
-          POST_PATH=$(git diff --name-only HEAD^ HEAD | grep '^content/posts/.*\.md$' | head -n 1)
+          # Find the newly added markdown file in content/posts/
+          POST_PATH=$(git diff --name-only --diff-filter=A HEAD^ HEAD | grep '^content/posts/.*\.md$' | head -n 1)
           if [ -z "$POST_PATH" ]; then
             echo "No new markdown post found in this commit. Skipping."
             exit 0
