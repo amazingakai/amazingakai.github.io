@@ -4,10 +4,11 @@
   <script>
     function getGiscusTheme() {
       const theme = document.documentElement.getAttribute("color-scheme");
+      const baseUrl = window.location.origin;
       // Fallback to dark if not explicitly light
       return theme === "light"
-        ? "{{ "/css/giscus-light.css" | absURL }}"
-        : "{{ "/css/giscus-dark.css" | absURL }}";
+        ? baseUrl + "{{ "/css/giscus-light.css" | relURL }}"
+        : baseUrl + "{{ "/css/giscus-dark.css" | relURL }}";
     }
 
     function loadGiscus() {
