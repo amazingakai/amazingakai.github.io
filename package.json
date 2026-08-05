@@ -11,7 +11,8 @@
     "lint-staged": "^15.2.9",
     "markdownlint-cli2": "^0.14.0",
     "prettier": "^3.3.3",
-    "prettier-plugin-go-template": "^0.0.15"
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-toml": "^2.0.6"
   },
   "lint-staged": {
     "*.{js,css,json,toml,yaml,yml,html}": "prettier --write",
