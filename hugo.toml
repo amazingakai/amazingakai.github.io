@@ -56,7 +56,7 @@ enableRobotsTXT = true
 
 [[menus.main]]
   name = 'Contact'
-  url = 'mailto:azharmomin@proton.me'
+  url = 'mailto:azhar-momin@outlook.com'
   weight = 2
 
 [outputFormats]
