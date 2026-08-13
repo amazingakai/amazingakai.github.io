@@ -45,7 +45,7 @@ or `otelc.tool.go` as an alias) containing a list of blank imports. This
 file isn't included in the actual build (it's marked with a `tools`
 build tag, following the standard `tools.go` convention), but Go still
 tracks its imports in `go.mod`. otelc reads this file before building,
-loads the imported packages using `golang.org/x/packages`, and scans
+loads the imported packages using `golang.org/x/tools/go/packages`, and scans
 each package's directory for rule files (`otelc.yaml`, `*.otelc.yaml`)
 or another `otel.instrumentation.go`, allowing instrumentation packages
 to bundle together other instrumentation packages. Those rule files
@@ -77,7 +77,7 @@ file references another. Writing that test surfaced a real bug: otelc was only
 looking for hook code files inside its own embedded bundle, not in packages loaded
 from external import paths. If that comment hadn't come up, this bug might
 have gone unnoticed for a while. I fixed it by updating otelc to load hook code
-through `golang.org/x/packages` as well. The implementation landed across a couple of
+through `golang.org/x/tools/go/packages` as well. The implementation landed across a couple of
 PRs: the hook loading fix in [#617](https://github.com/open-telemetry/opentelemetry-go-compile-instrumentation/pull/617),
 followed by the core import-driven instrumentation support in
 [#612](https://github.com/open-telemetry/opentelemetry-go-compile-instrumentation/pull/612).
