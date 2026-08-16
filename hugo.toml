@@ -3,85 +3,103 @@ locale = 'en-US'
 enableRobotsTXT = true
 
 [caches]
-  [caches.images]
-    dir = ':cacheDir/images'
+[caches.images]
+dir = ':cacheDir/images'
 
 [params]
-  summaryLength = 1
-  description = "I'm a computer science student interested in low level programming, distributed systems, and observability tooling. I write mostly C++, Rust, Go, and Python."
+summaryLength = 1
+description = "I'm a computer science student interested in low level programming, distributed systems, and observability tooling. I write mostly C++, Rust, Go, and Python."
 
 [params.author]
-  name = 'Azhar Momin'
+name = 'Azhar Momin'
 
 [params.rtwt]
-  sidePane = true
-  countPageItems = 7
-  searchPath = 'search'
+sidePane = true
+countPageItems = 7
+searchPath = 'search'
 
 [params.rtwt.home]
-  sidePaneTags = true
-  showFeatured = true
-  hideRecentWhenFeatured = true
-  showRecent = true
-  countRecent = 5
+sidePaneTags = true
+showFeatured = true
+hideRecentWhenFeatured = true
+showRecent = true
+countRecent = 5
 
 [params.rtwt.side.home]
-  sidePaneSticky = false
-  taxonomies = []
+sidePaneSticky = false
+taxonomies = []
 
 [params.rtwt.side.list]
-  sidePaneSticky = false
+sidePaneSticky = false
 
 [params.rtwt.side.single]
-  sidePaneSticky = true
-  showDetails = true
-  showTableOfContents = true
-  showAttachments = true
-  showRelated = true
-  countRelated = 5
+sidePaneSticky = true
+showDetails = true
+showTableOfContents = true
+showAttachments = true
+showRelated = true
+countRelated = 5
 
 [related]
-  includeNewer = true
-  [[related.indices]]
-    name = 'tags'
-    weight = 100
+includeNewer = true
+[[related.indices]]
+name = 'tags'
+weight = 100
 
 [taxonomies]
-  tag = 'tags'
+tag = 'tags'
 
 [[menus.main]]
-  name = 'Posts'
-  pageRef = '/posts'
-  weight = 1
+name = 'Posts'
+pageRef = '/posts'
+weight = 1
 
 [[menus.main]]
-  name = 'Contact'
-  url = 'mailto:azhar-momin@outlook.com'
-  weight = 2
+name = 'Contact'
+url = 'mailto:azhar-momin@outlook.com'
+weight = 2
 
 [outputFormats]
-  [outputFormats.SearchIndex]
-    mediaType = "application/json"
-    baseName = "searchindex"
-    isPlainText = true
-    notAlternative = true
+[outputFormats.SearchIndex]
+mediaType = "application/json"
+baseName = "searchindex"
+isPlainText = true
+notAlternative = true
 
 [mediaTypes]
-  [mediaTypes."application/json"]
-    suffixes = ["json"]
+[mediaTypes."application/json"]
+suffixes = ["json"]
 
 [outputs]
-  home = ["HTML", "RSS", "SearchIndex"]
+home = ["HTML", "RSS", "SearchIndex"]
 
 [params.giscus]
-  enable = true
-  repo = "amazingakai/amazingakai.github.io"
-  repo_id = "R_kgDOOnvkaw"
-  category = "Blogs"
-  category_id = "DIC_kwDOOnvka84DCf3Q"
-  mapping = "pathname"
-  strict = "0"
-  reactions_enabled = "0"
-  emit_metadata = "0"
-  input_position = "top"
-  lang = "en"
+enable = true
+repo = "amazingakai/amazingakai.github.io"
+repo_id = "R_kgDOOnvkaw"
+category = "Blogs"
+category_id = "DIC_kwDOOnvka84DCf3Q"
+mapping = "pathname"
+strict = "0"
+reactions_enabled = "0"
+emit_metadata = "0"
+input_position = "top"
+lang = "en"
+
+[[cascade]]
+[cascade.sitemap]
+disable = true
+[cascade.target]
+path = '/tags**'
+
+[[cascade]]
+[cascade.sitemap]
+disable = true
+[cascade.target]
+path = '/posts'
+
+[[cascade]]
+[cascade.sitemap]
+disable = true
+[cascade.target]
+path = '/search'

@@ -1,7 +1,7 @@
 {{- define "main" -}}
   {{- .Content -}}
 
-  {{- $indexablePages := where site.RegularPages "Params.indexable" "ne" false -}}
+  {{- $indexablePages := where site.RegularPages "Params.sitemap.disable" "ne" true -}}
 
 
   <div style="width:95%;margin:0 auto;">

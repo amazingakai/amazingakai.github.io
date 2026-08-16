@@ -1,5 +1,5 @@
 User-agent: *
 Sitemap: {{ "sitemap.xml" | absURL }}
-{{ range $index, $element := where site.RegularPages "Params.indexable" "eq" false }}
-Disallow: {{ $element.RelPermalink }}
-{{- end -}}
+Disallow: /search/
+Disallow: /tags/
+Disallow: /posts/$

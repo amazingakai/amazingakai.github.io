@@ -22,7 +22,7 @@
 
 
 <title>{{ $title }}</title>
-{{- if eq .Params.indexable false }}
+{{- if .Params.sitemap.disable }}
   <meta name="robots" content="noindex, nofollow" />
 {{- else }}
   {{- if $description }}

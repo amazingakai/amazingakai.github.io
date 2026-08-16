@@ -6,7 +6,7 @@
   "singleQuote": false,
   "trailingComma": "none",
   "bracketSpacing": true,
-  "plugins": ["prettier-plugin-go-template"],
+  "plugins": ["prettier-plugin-go-template", "prettier-plugin-toml"],
   "overrides": [
     {
       "files": ["*.html"],
