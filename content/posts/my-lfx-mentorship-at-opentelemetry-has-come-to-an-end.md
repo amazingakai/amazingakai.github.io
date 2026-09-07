@@ -1,6 +1,6 @@
 +++
 title = 'My LFX Mentorship at OpenTelemetry Has Come to an End'
-date = '2026-09-04T00:00:00+05:30'
+date = '2026-09-07T00:00:00+05:30'
 tags = ['LFX', 'OpenTelemetry', 'Open Source', 'Mentorship']
 featured = true
 summary = "Looking back on my LFX Mentorship at OpenTelemetry Go Compile Instrumentation, what shipped, what I gained, and what's next."
