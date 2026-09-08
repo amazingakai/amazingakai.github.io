@@ -10,7 +10,7 @@ Rust, Go, and Python.
 
 ## What I'm up to right now
 
-I'm an **LFX Mentee** at OpenTelemetry, working on
+I recently completed an **LFX Mentorship** at OpenTelemetry, working on
 [Go Compile Time Instrumentation](https://github.com/open-telemetry/opentelemetry-go-compile-instrumentation)
 under the guidance of [Kemal Akkoyun](https://github.com/kakkoyun) and
 [Dario Castañé](https://github.com/darccio). I stumbled into observability
